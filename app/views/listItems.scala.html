@@ -1,0 +1,49 @@
+@(items: Seq[Item], form: Form[Item])(implicit messages: Messages)
+
+@main("Items") {
+
+    <h1>Items</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Maker</th>
+                <th>Warranty</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Seller</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(item <- items) {
+            <tr>
+                <td>@item.name</td>
+                <td>@item.description</td>
+                <td>@item.maker</td>
+                <td>@item.warranty</td>
+                <td>@item.price</td>
+                <td>@item.discount</td>
+                <td>@item.seller</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <hr/>
+
+    @helper.form(routes.Application.createItem()) {
+        @helper.inputText(form("name"), 'id -> "SomeId", 'class -> "SomeClass")
+        @helper.inputText(form("description"))
+        @helper.inputText(form("maker"))
+        @helper.inputText(form("warranty"))
+        @helper.inputText(form("price"))
+        @helper.inputText(form("discount"))
+        @helper.inputText(form("seller"))
+        @helper.inputFile(form("image"))
+        <button type="submit">Create Item</button>
+    }
+
+
+}

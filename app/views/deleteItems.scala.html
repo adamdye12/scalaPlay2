@@ -1,0 +1,14 @@
+@(items: Seq[Item]), form: Form[Item])
+
+@import helper._
+@main("Items") {
+
+    <h1>Select an item to delete</h1>
+    <select>
+    @for(item <- items) {
+        <option>@item.name</option>
+    }
+        <input type="submit" value=Delete">
+    @form
+    </select>
+}

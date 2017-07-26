@@ -3,9 +3,20 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET         /                    controllers.Application.index
+
+GET         /items               controllers.Application.listItems
+POST        /items               controllers.Application.createItem
+
+# Delete Items
+GET         /deleteitems         controllers.Application.viewDeleteItem
+POST        /deleteitems         controllers.Application.deleteItem
+#upload images
+
+GET         /uploadimage         controllers.Application.viewUpload
+POST        /uploadimage         controllers.Application.upload
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file        controllers.Assets.at(path="/public", file)
 
     
