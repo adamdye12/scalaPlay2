@@ -30,14 +30,15 @@ class Application  @Inject()(val messagesApi: MessagesApi) extends Controller wi
     })
   }
 
-  def viewDeleteItem = Action{
-    Ok(views.html.deleteItems(Item.items))
+  def viewDeleteItem (id: Int)= Action{
+    Ok(views.html.deleteItems(Item.items)(id))
   }
 
-  def deleteItem(name: String) = Action{ implicit request =>
-      Ok(Item.items.delete(name).map(num => Ok(s"$num items deleted")))
-    Redirect(routes.Application.viewDeleteItem)
+  def deleteItem(id: Int) = Action { implicit request =>
+    Item.items.remove(id)
+    Redirect(routes.Application.viewDeleteItem(id))
   }
+
   def viewUpload = Action {
     Ok(views.html.uploadImage())
   }
